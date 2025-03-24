@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karooooo.DriverPlanning.App", "Karooooo.DriverPlanning\Karooooo.DriverPlanning.App.csproj", "{903E8F42-CC2A-40E4-90CF-0DCB1A56923D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karooooo.DriverPlanning.Persistence", "Karooooo.DriverPlanning.Persistence\Karooooo.DriverPlanning.Persistence.csproj", "{E5D20CA6-2463-4139-B95F-1050B1D23B40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karooooo.DriverPlanning.Domain", "Karooooo.DriverPlanning.Domain\Karooooo.DriverPlanning.Domain.csproj", "{73EC15EB-7301-4B0F-8AE1-B3370823FEF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karooooo.DriverPlanning.Presentation", "Karooooo.DriverPlanning.Presentation\Karooooo.DriverPlanning.Presentation.csproj", "{90D9CF57-F890-44A8-B2EF-1AF81D1667EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karooooo.DriverPlanning.Application", "Karooooo.DriverPlanning.Application\Karooooo.DriverPlanning.Application.csproj", "{51ED318F-9830-464E-BE2A-5F92C3859D10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{903E8F42-CC2A-40E4-90CF-0DCB1A56923D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{903E8F42-CC2A-40E4-90CF-0DCB1A56923D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{903E8F42-CC2A-40E4-90CF-0DCB1A56923D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{903E8F42-CC2A-40E4-90CF-0DCB1A56923D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5D20CA6-2463-4139-B95F-1050B1D23B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5D20CA6-2463-4139-B95F-1050B1D23B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5D20CA6-2463-4139-B95F-1050B1D23B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5D20CA6-2463-4139-B95F-1050B1D23B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73EC15EB-7301-4B0F-8AE1-B3370823FEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73EC15EB-7301-4B0F-8AE1-B3370823FEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73EC15EB-7301-4B0F-8AE1-B3370823FEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73EC15EB-7301-4B0F-8AE1-B3370823FEF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90D9CF57-F890-44A8-B2EF-1AF81D1667EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90D9CF57-F890-44A8-B2EF-1AF81D1667EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90D9CF57-F890-44A8-B2EF-1AF81D1667EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90D9CF57-F890-44A8-B2EF-1AF81D1667EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51ED318F-9830-464E-BE2A-5F92C3859D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51ED318F-9830-464E-BE2A-5F92C3859D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51ED318F-9830-464E-BE2A-5F92C3859D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51ED318F-9830-464E-BE2A-5F92C3859D10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C78C1120-ED85-4803-B63D-F7B69AE2608A}
+	EndGlobalSection
+EndGlobal

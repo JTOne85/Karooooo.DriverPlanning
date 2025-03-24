@@ -1,0 +1,6 @@
+@Karooooo.DriverPlanning_HostAddress = http://localhost:5186
+
+GET {{Karooooo.DriverPlanning_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Configurations>Debug;Development</Configurations>
+	</PropertyGroup>
+
+	<Target Name="CopyTransformedAppSettings" AfterTargets="PostBuildEvent">
+		<Copy SourceFiles="$(OutputPath)appsettings.json" DestinationFolder="$(OutputPath)$(Configuration)" />
+	</Target>
+	
+	<ItemGroup>
+		    <Content Remove="appsettings.Debug.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.Debug.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+<PackageReference Include="FastEndpoints" Version="5.35.0" />
+		<PackageReference Include="FastEndpoints.Security" Version="5.35.0" />
+		<PackageReference Include="FastEndpoints.Swagger" Version="5.35.0" />
+		<PackageReference Include="Karooooo.Common.Configuration" Version="8.0.0" />
+		<PackageReference Include="Karooooo.Common.Hosting" Version="8.9.1" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="4.0.50">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="NetTopologySuite.Core" Version="1.15.3" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Karooooo.DriverPlanning.Application\Karooooo.DriverPlanning.Application.csproj" />
+		<ProjectReference Include="..\Karooooo.DriverPlanning.Persistence\Karooooo.DriverPlanning.Persistence.csproj" />
+		<ProjectReference Include="..\Karooooo.DriverPlanning.Presentation\Karooooo.DriverPlanning.Presentation.csproj" />
+	</ItemGroup><ItemGroup>
+		<Content Update="appsettings.json">
+			<TransformOnBuild>true</TransformOnBuild>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<TransformOnBuild>true</TransformOnBuild>
+    </None>
+  </ItemGroup>
+
+
+	
+	</Project>
