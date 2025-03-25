@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Configurations\" />
+    <Folder Include="Extensions\" />
     <Folder Include="Migrations\" />
+    <Folder Include="ValueConverters\" />
   </ItemGroup>
 
   <ItemGroup>
