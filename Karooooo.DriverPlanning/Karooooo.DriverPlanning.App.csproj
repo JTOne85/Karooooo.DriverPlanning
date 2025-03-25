@@ -23,6 +23,7 @@
 <PackageReference Include="FastEndpoints" Version="5.35.0" />
 		<PackageReference Include="FastEndpoints.Security" Version="5.35.0" />
 		<PackageReference Include="FastEndpoints.Swagger" Version="5.35.0" />
+		<PackageReference Include="Karooooo.AccessManagement.Jwt" Version="8.0.3" />
 		<PackageReference Include="Karooooo.Common.Configuration" Version="8.0.0" />
 		<PackageReference Include="Karooooo.Common.Hosting" Version="8.9.1" />
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
