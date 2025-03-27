@@ -1,4 +1,5 @@
-﻿using Karooooo.DriverPlanning.Persistence;
+﻿using Karooooo.DriverPlanning.Domain.Repositories;
+using Karooooo.DriverPlanning.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Karooooo.DriverPlanning.App.Configuration
@@ -15,6 +16,7 @@ namespace Karooooo.DriverPlanning.App.Configuration
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
             });
 
+           
             return services;
         }
     }

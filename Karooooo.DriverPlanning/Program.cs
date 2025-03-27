@@ -9,6 +9,7 @@ using Karooooo.Common.Logging.Options;
 using Karooooo.Common.Configuration;
 using Karooooo.DriverPlanning.App.Configuration;
 using Serilog;
+using Karooooo.DriverPlanning.Domain.Repositories;
 
 namespace Karooooo.DriverPlanning.App
 {
@@ -51,6 +52,7 @@ namespace Karooooo.DriverPlanning.App
             builder.Services.AddOpenApi();
 
             ConfigurePersistence(builder);
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             var app = builder.Build();
 
