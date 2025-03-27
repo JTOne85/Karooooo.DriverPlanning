@@ -12,5 +12,6 @@ namespace Karooooo.DriverPlanning.Domain.Repositories
         Task<IEnumerable<T>> GetAllAsync();
 
         Task AddAsync(T entity);
+        Task UpdateAsync(T entity);
     }
 }

@@ -14,7 +14,7 @@ public class ApplicationDbContext : DbContext
         
     }
 
-    public DbSet<Driver> Drivers { get; set; }
+    public DbSet<DriverCompliance> Drivers { get; set; }
     public DbSet<DriverIdentification> DriverIdentificationDetails { get; set; }
     public DbSet<DriverBankingDetails> DriverBankingDetails { get; set; }
     public DbSet<DriverAddress> DriverAddressDetils { get; set; }

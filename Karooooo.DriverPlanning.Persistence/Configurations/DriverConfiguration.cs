@@ -9,28 +9,28 @@ using System.Threading.Tasks;
 
 namespace Karooooo.DriverPlanning.Persistence.Configurations
 {
-    internal sealed class DriverConfiguration : IEntityTypeConfiguration<Driver>
+    internal sealed class DriverConfiguration : IEntityTypeConfiguration<DriverCompliance>
     {
-        public void Configure(EntityTypeBuilder<Driver> builder)
+        public void Configure(EntityTypeBuilder<DriverCompliance> builder)
         {
-            builder.ToTable(nameof(Driver));
+            builder.ToTable(nameof(DriverCompliance));
             builder.HasIndex(e => e.Uid, "UC_Driver_UID").IsUnique();
             builder.HasIndex(e => e.UserId, "UC_Driver_UserId").IsUnique();
 
 
-            builder.HasOne(e => e.DriverDetails).WithOne().HasForeignKey<Driver>(e => e.DriverDetailsId)
+            builder.HasOne(e => e.DriverDetails).WithOne().HasForeignKey<DriverCompliance>(e => e.DriverDetailsId)
                 .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(e => e.NextOfKin).WithOne().HasForeignKey<Driver>(e => e.DriverNextOfKinId)
+            builder.HasOne(e => e.NextOfKin).WithOne().HasForeignKey<DriverCompliance>(e => e.DriverNextOfKinId)
                 .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(e => e.DriverIdentification).WithOne().HasForeignKey<Driver>(e => e.DriverIdentificationId)
+            builder.HasOne(e => e.DriverIdentification).WithOne().HasForeignKey<DriverCompliance>(e => e.DriverIdentificationId)
                 .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(builder => builder.DriverVehicle).WithOne().HasForeignKey<Driver>(e => e.DriverVehcileId)
+            builder.HasOne(builder => builder.DriverVehicle).WithOne().HasForeignKey<DriverCompliance>(e => e.DriverVehcileId)
                 .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(e => e.DriverLicense).WithOne().HasForeignKey<Driver>(e => e.DriverLisenceId)
+            builder.HasOne(e => e.DriverLicense).WithOne().HasForeignKey<DriverCompliance>(e => e.DriverLisenceId)
                 .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(e => e.DriverAddress).WithOne().HasForeignKey<Driver>(e => e.DriverAddressId)
+            builder.HasOne(e => e.DriverAddress).WithOne().HasForeignKey<DriverCompliance>(e => e.DriverAddressId)
                 .OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(e => e.DriverBankingDetails).WithOne().HasForeignKey<Driver>(e => e.DriverBankingDetailsId)
+            builder.HasOne(e => e.DriverBankingDetails).WithOne().HasForeignKey<DriverCompliance>(e => e.DriverBankingDetailsId)
                 .OnDelete(DeleteBehavior.Cascade); ;
 
         }

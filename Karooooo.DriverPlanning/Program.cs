@@ -10,6 +10,7 @@ using Karooooo.Common.Configuration;
 using Karooooo.DriverPlanning.App.Configuration;
 using Serilog;
 using Karooooo.DriverPlanning.Domain.Repositories;
+using Karooooo.DriverPlanning.Persistence.Repositories;
 
 namespace Karooooo.DriverPlanning.App
 {

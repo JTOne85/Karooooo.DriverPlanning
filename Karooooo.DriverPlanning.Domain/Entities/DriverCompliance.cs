@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Karooooo.DriverPlanning.Domain.Entities;
 
-public class Driver
+public class DriverCompliance : IEntity
 {
     public int Id { get; private set; }
     public int UserId { get; private set; }
@@ -28,9 +28,9 @@ public class Driver
     public virtual DriverAddress? DriverAddress { get; set; }
     public virtual DriverBankingDetails? DriverBankingDetails { get; set; }
 
-    public static Driver CreateDriver(int id)
+    public static DriverCompliance CreateDriver(int id)
     {
-        return new Driver
+        return new DriverCompliance
         {
             Uid = Guid.NewGuid().ToString(),
             Id = id

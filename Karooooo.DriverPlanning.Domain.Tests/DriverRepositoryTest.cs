@@ -4,12 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Karooooo.DriverPlanning.Persistence;
 using Karooooo.DriverPlanning.Domain.Entities;
 
-using Karooooo.DriverPlanning.Domain.Repositories;
-
 using Moq;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Karooooo.Common.Domain.Shared;
 using Karooooo.AccessManagement.Domain.Primitives;
+using Karooooo.DriverPlanning.Persistence.Repositories;
 
 
 
@@ -18,39 +17,39 @@ namespace Karooooo.DriverPlanning.Domain.Tests
     public class DriverRepositoryTest
     {
         private Mock<ApplicationDbContext> _mockContext;
-        private Mock<DbSet<Driver>> _mockDbSet;
-        private Repository<Driver> _repository;
+        private Mock<DbSet<DriverCompliance>> _mockDbSet;
+        private Repository<DriverCompliance> _repository;
 
-        private IEnumerable<Driver> _testData { get; set; }
+        private IEnumerable<DriverCompliance> _testData { get; set; }
 
         public DriverRepositoryTest()
         {
-            var testData = new List<Driver>            {
-                Driver.CreateDriver(1),
-                Driver.CreateDriver(2),
-                Driver.CreateDriver(3),
+            var testData = new List<DriverCompliance>            {
+                DriverCompliance.CreateDriver(1),
+                DriverCompliance.CreateDriver(2),
+                DriverCompliance.CreateDriver(3),
             }.AsQueryable();
             _testData = [.. testData];
-            _mockDbSet = new Mock<DbSet<Driver>>();
+            _mockDbSet = new Mock<DbSet<DriverCompliance>>();
 
-            _mockDbSet.As<IQueryable<Driver>>().Setup(m => m.Provider).Returns(testData.Provider);
-            _mockDbSet.As<IQueryable<Driver>>().Setup(m => m.Expression).Returns(testData.Expression);
-            _mockDbSet.As<IQueryable<Driver>>().Setup(m => m.ElementType).Returns(testData.ElementType);
-            _mockDbSet.As<IQueryable<Driver>>().Setup(m => m.GetEnumerator()).Returns(testData.GetEnumerator());
+            _mockDbSet.As<IQueryable<DriverCompliance>>().Setup(m => m.Provider).Returns(testData.Provider);
+            _mockDbSet.As<IQueryable<DriverCompliance>>().Setup(m => m.Expression).Returns(testData.Expression);
+            _mockDbSet.As<IQueryable<DriverCompliance>>().Setup(m => m.ElementType).Returns(testData.ElementType);
+            _mockDbSet.As<IQueryable<DriverCompliance>>().Setup(m => m.GetEnumerator()).Returns(testData.GetEnumerator());
 
-            _mockDbSet.As<IAsyncEnumerable<Driver>>()
+            _mockDbSet.As<IAsyncEnumerable<DriverCompliance>>()
                       .Setup(m => m.GetAsyncEnumerator(It.IsAny<CancellationToken>()))
-                      .Returns(new TestAsyncEnumerator<Driver>(testData.GetEnumerator()));
+                      .Returns(new TestAsyncEnumerator<DriverCompliance>(testData.GetEnumerator()));
 
             _mockDbSet.Setup(m => m.FindAsync(It.IsAny<object[]>()))
                       .ReturnsAsync((object[] ids) => testData
                       .FirstOrDefault(e => e.Id == (int)ids[0]));
 
             _mockContext = new Mock<ApplicationDbContext>();
-            _mockContext.Setup(c => c.Set<Driver>())
+            _mockContext.Setup(c => c.Set<DriverCompliance>())
                         .Returns(_mockDbSet.Object);
 
-            _repository = new Repository<Driver>(_mockContext.Object);
+            _repository = new Repository<DriverCompliance>(_mockContext.Object);
         }
 
 
@@ -114,7 +113,7 @@ namespace Karooooo.DriverPlanning.Domain.Tests
         {
             // Arrange
             var drivers = _testData.ToList();
-            var newDriver = Driver.CreateDriver(4);            
+            var newDriver = DriverCompliance.CreateDriver(4);            
 
             //Act 
             await _repository.AddAsync(newDriver);
@@ -123,5 +122,37 @@ namespace Karooooo.DriverPlanning.Domain.Tests
             _mockDbSet.Verify(m => m.AddAsync(newDriver, default), Times.Once);
             _mockContext.Verify(m => m.SaveChangesAsync(default), Times.Once);           
         }       
+
+        [Fact]
+        public async Task UpdateAsync_ShouldUpdateEntity()
+        {
+            // Arrange            
+            var entity = await _repository.GetByIdAsync(1);
+
+            if (entity != null)
+                entity.DriverDetailsId = 1;
+
+            _mockDbSet.Setup(m => m.Update(It.IsAny<DriverCompliance>())).Verifiable();
+            _mockContext.Setup(m => m.SaveChangesAsync(default)).ReturnsAsync(1);
+
+            // Act
+            await _repository.UpdateAsync(entity);
+
+            // Assert
+            _mockDbSet.Verify(m => m.Update(It.Is<DriverCompliance>(e => e == entity)), Times.Once);
+            _mockContext.Verify(m => m.SaveChangesAsync(default), Times.Once);
+        }
+
+        [Fact]
+        public async Task UpdateAsync_InvalidId_ShouldNotUpdateEntity()
+        {
+            // Arrange            
+            var entity = DriverCompliance.CreateDriver(9);
+            entity.DriverDetailsId = 1;
+            _mockDbSet.Setup(db => db.FindAsync(entity.Id)).ReturnsAsync(null as DriverCompliance);            
+
+            // Act & Assert
+            await Assert.ThrowsAsync<InvalidOperationException>(() => _repository.UpdateAsync(entity));           
+        }
     }
 }
