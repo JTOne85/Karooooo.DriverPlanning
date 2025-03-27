@@ -9,6 +9,11 @@
   <ItemGroup>
     <PackageReference Include="FastEndpoints" Version="5.35.0" />
     <PackageReference Include="Karooooo.Common.Http" Version="8.6.4" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Endpoints\Driver\" />
   </ItemGroup>
 
 </Project>
