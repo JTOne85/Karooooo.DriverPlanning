@@ -74,5 +74,8 @@ namespace Karooooo.DriverPlanning.Domain.Tests
             Assert.Equal(testData[0].Id, result.Id);
             Assert.Equal(testData[0].Uid, result.Uid);
         }
+
+        [Fact]
+
     }
 }
