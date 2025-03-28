@@ -12,7 +12,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  buildOutput: '$(Build.ArtifactStagingDirectory)/output'
+  buildOutput: '$(Build.ArtifactStagingDirectory)'
   artifactCopyPath: '$(Build.ArtifactStagingDirectory)/copiedArtifacts'
 
 steps:
@@ -34,7 +34,7 @@ steps:
 #   displayName: 'Cache NuGet packages'
 
 - script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'Build projects'
+  displayName: 'Build projects'  
 
 - script: dotnet test --configuration $(buildConfiguration) --no-build --verbosity normal
   displayName: 'Run tests'
