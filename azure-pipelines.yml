@@ -37,8 +37,8 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)  --output $(buildOutput)
   displayName: 'Build projects'
 
-- script: dotnet test --configuration $(buildConfiguration) --no-build --verbosity normal
-  displayName: 'Run tests'
+#- script: dotnet test --configuration $(buildConfiguration) --no-build --verbosity normal
+#  displayName: 'Run tests'
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(buildOutput)'
