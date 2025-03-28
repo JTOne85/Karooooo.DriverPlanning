@@ -12,7 +12,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  buildOutput: '$(Build.ArtifactStagingDirectory)'
+  # buildOutput: '$(Build.ArtifactStagingDirectory)/output'
+  buildOutput: '$(Build.BinariesDirectory)/output'
   artifactCopyPath: '$(Build.ArtifactStagingDirectory)/copiedArtifacts'
 
 steps:
@@ -33,18 +34,17 @@ steps:
 #     path: $(NUGET_PACKAGES)
 #   displayName: 'Cache NuGet packages'
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'Build projects'  
+- script: dotnet build --configuration $(buildConfiguration)  --output $(buildOutput)
+  displayName: 'Build projects'
 
 - script: dotnet test --configuration $(buildConfiguration) --no-build --verbosity normal
   displayName: 'Run tests'
-
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(buildOutput)'
-    Contents: '**'
-    TargetFolder: '$(artifactCopyPath)'
-  displayName: 'Copy artifacts to folder'
+    Contents: '**/bin/$(buildConfiguration)/**'
+    TargetFolder: '$(buildOutput)'
+  displayName: 'Copy buildoutputs to folder'
 
 - task: PublishBuildArtifacts@1
   inputs:
