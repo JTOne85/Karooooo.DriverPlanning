@@ -13,8 +13,8 @@ pool:
 variables:
   buildConfiguration: 'Release'
   # buildOutput: '$(Build.ArtifactStagingDirectory)/output'
-  buildOutput: '$(Build.BinariesDirectory)/output'
-  artifactCopyPath: '$(Build.ArtifactStagingDirectory)/copiedArtifacts'
+  buildOutput: '$(Build.BinariesDirectory)/output/'
+  artifactCopyPath: '$(Build.ArtifactStagingDirectory)/copiedArtifacts/'
 
 steps:
 - task: UseDotNet@2
