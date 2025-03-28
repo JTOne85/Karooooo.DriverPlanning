@@ -1,0 +1,54 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- azure-pipelines
+
+pool:
+  vmImage: windows-latest
+  name: jacques-self-hosted
+
+variables:
+  buildConfiguration: 'Release'
+  # buildOutput: '$(Build.ArtifactStagingDirectory)/output'
+  buildOutput: '$(Build.BinariesDirectory)/output/'
+  artifactCopyPath: '$(Build.ArtifactStagingDirectory)/copiedArtifacts/'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '9.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- script: dotnet restore
+  displayName: 'Restore NuGet packages'
+
+# - task: Cache@2
+#   inputs:
+#     key: 'nuget | "$(Agent.OS)" | **/packages.lock.json'
+#     restoreKeys: |
+#       nuget | "$(Agent.OS)"
+#     path: $(NUGET_PACKAGES)
+#   displayName: 'Cache NuGet packages'
+
+- script: dotnet build --configuration $(buildConfiguration)  --output $(buildOutput)
+  displayName: 'Build projects'
+
+#- script: dotnet test --configuration $(buildConfiguration) --no-build --verbosity normal
+#  displayName: 'Run tests'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(buildOutput)'
+    Contents: '**/bin/$(buildConfiguration)/**'
+    TargetFolder: '$(buildOutput)'
+  displayName: 'Copy buildoutputs to folder'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(buildOutput)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publish artifacts'
