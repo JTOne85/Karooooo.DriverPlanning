@@ -33,7 +33,7 @@ steps:
 #     path: $(NUGET_PACKAGES)
 #   displayName: 'Cache NuGet packages'
 
-- script: dotnet build --configuration $(buildConfiguration)  --output $(buildOutput)
+- script: dotnet build --configuration $(buildConfiguration)
   displayName: 'Build projects'
 
 - script: dotnet test --configuration $(buildConfiguration) --no-build --verbosity normal
