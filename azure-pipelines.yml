@@ -29,13 +29,13 @@ steps:
 - script: dotnet restore
   displayName: 'Restore NuGet packages'
 
-- task: Cache@2
-  inputs:
-    key: 'nuget | "$(Agent.OS)" | **/packages.lock.json'
-    restoreKeys: |
-      nuget | "$(Agent.OS)"
-    path: $(NUGET_PACKAGES)
-  displayName: 'Cache NuGet packages'
+#- task: Cache@2
+#  inputs:
+#    key: 'nuget | "$(Agent.OS)" | **/packages.lock.json'
+#    restoreKeys: |
+#      nuget | "$(Agent.OS)"
+#    path: $(NUGET_PACKAGES)
+#  displayName: 'Cache NuGet packages'
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'Build projects'
